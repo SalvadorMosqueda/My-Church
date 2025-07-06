@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Form,
   Input,
@@ -7,12 +7,18 @@ import {
   Checkbox,
   Button,
 } from "@heroui/react";
-
+import { useRouter } from "next/router";
 export default function LoginPage() {
+  const router = useRouter();
   const [password, setPassword] = React.useState("");
   const [submitted, setSubmitted] = React.useState(null);
   const [errors, setErrors] = React.useState({});
 
+  useEffect(() => {
+    if (submitted) {
+      router.push("/main");
+    }
+  }, [submitted]);
   // Real-time password validation
   const getPasswordError = (value) => {
     if (value.length < 4) {
@@ -69,32 +75,33 @@ export default function LoginPage() {
       className="min-h-screen bg-cover bg-center flex items-center justify-center"
       style={{ backgroundImage: "url('/images/corona.jpg')" }}
     >
-      <div className="flex items-center justify-center h-screen ">
-        <div className="w-[35rem]  bg-white  h-[40rem]  shadow-xl rounded-3xl ">
+      <div className="flex items-center justify-center h-screen  py-16 px-10 ">
+        <div className="max-w-[35rem]  bg-white  max-h-[40rem]  shadow-xl rounded-3xl ">
           <img src="/images/iafcj.png" alt="Fondo" />
-          {/* <h1 className=" text-4xl font-bold text-yellow-700 py-2 flex text-center justify-center">Sistema Celular Iafcj #25</h1> */}
+
           <Form
-            className="w-full py-5  flex justify-center items-center space-y-4"
+            className="w-full py-5 text-black  flex justify-center items-center space-y-4"
             validationErrors={errors}
             onReset={() => setSubmitted(null)}
             onSubmit={onSubmit}
           >
             <div className="flex flex-col gap-4 max-w-md">
               <Input
-                isRequired
-                errorMessage={({ validationDetails }) => {
-                  if (validationDetails.valueMissing) {
-                    return "Please enter your name";
-                  }
-
-                  return errors.name;
-                }}
                 label="Nombre de usuario"
                 labelPlacement="outside"
                 name="Usuario"
                 placeholder="Escribe tu usuario"
+                isRequired
+                classNames={{
+                  label: "!text-black", // Forzar el color negro en el label
+                }}
+                errorMessage={({ validationDetails }) => {
+                  if (validationDetails.valueMissing) {
+                    return "Por favor, ingresa tu nombre";
+                  }
+                  return errors.name;
+                }}
               />
-
               <Input
                 isRequired
                 // errorMessage={getPasswordError(password)}
@@ -106,6 +113,9 @@ export default function LoginPage() {
                 type="password"
                 value={password}
                 onValueChange={setPassword}
+                classNames={{
+                  label: "!text-black", // Forzar el color negro en el label
+                }}
               />
 
               <Select
@@ -114,10 +124,13 @@ export default function LoginPage() {
                 labelPlacement="outside"
                 name="Celula"
                 placeholder="Select Celula"
+                classNames={{
+                  label: "!text-black", // Forzar el color negro en el label
+                }}
               >
                 {
                   <>
-                    <SelectItem key="ar">1</SelectItem>
+                    <SelectItem key="1">1</SelectItem>
                   </>
                 }
               </Select>

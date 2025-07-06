@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const cookies = parse(req.headers.cookie || "");
   const token = cookies.token;
 
-  if (!token) {
+  if (token) {
     return {
       redirect: {
         destination: "/",
@@ -34,49 +34,26 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 export default function IndexPage() {
   return (
     <DefaultLayout>
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-        <div className="inline-block max-w-xl text-center justify-center">
-          <span className={title()}>Make&nbsp;</span>
-          <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-          <br />
+      <section className="flex flex-col   gap-4 items-center justify-between   md:py-10">
+        <div className="   inline-block  font-serif max-w-xl text-center justify-center">
           <span className={title()}>
-            websites regardless of your design experience.
+            Sistema&nbsp;{" "}
+            <span className={title({ color: "violet" })}>Celular&nbsp;</span>
           </span>
-          <div className={subtitle({ class: "mt-4" })}>
-            Beautiful, fast and modern React UI library.
-          </div>
-        </div>
 
-        <div className="flex gap-3">
-          <Link
-            isExternal
-            className={buttonStyles({
-              color: "primary",
-              radius: "full",
-              variant: "shadow",
-            })}
-            href={siteConfig.links.docs}
-          >
-            Documentation
-          </Link>
-          <Link
-            isExternal
-            className={buttonStyles({ variant: "bordered", radius: "full" })}
-            href={siteConfig.links.github}
-          >
-            <GithubIcon size={20} />
-            GitHub
-          </Link>
+          <br />
+        
         </div>
+        <img className="h-20 " src="/images/iafcj.png" alt="Fondo" />
 
-        <div className="mt-8">
-          <Snippet hideCopyButton hideSymbol variant="bordered">
-            <span>
-              Get started by editing{" "}
-              <Code color="primary">pages/index.tsx</Code>
-            </span>
-          </Snippet>
-        </div>
+        {/* <div className="flex justify-end">
+          <span className={title()}>
+            Semana de&nbsp;{" "}
+            <span className={title({ color: "violet" })}>Orar!&nbsp;</span>
+          </span>
+        </div> */}
+
+<img className="mt-5" src="/images/sis.jpeg" alt="Fondo" />
       </section>
     </DefaultLayout>
   );
