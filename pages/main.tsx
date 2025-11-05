@@ -2,15 +2,10 @@
 import { GetServerSideProps } from "next";
 import { parse } from "cookie";
 
-import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
-import { Code } from "@heroui/code";
-import { button as buttonStyles } from "@heroui/theme";
 
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+import { title } from "@/components/primitives";
 import DefaultLayout from "@/layouts/default";
+
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { req } = context;
@@ -32,6 +27,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 export default function IndexPage() {
+
+
   return (
     <DefaultLayout>
       <section className="flex flex-col   gap-4 items-center justify-between   md:py-10">
@@ -42,7 +39,6 @@ export default function IndexPage() {
           </span>
 
           <br />
-        
         </div>
         <img className="h-20 " src="/images/iafcj.png" alt="Fondo" />
 
@@ -53,7 +49,7 @@ export default function IndexPage() {
           </span>
         </div> */}
 
-<img className="mt-5" src="/images/sis.jpeg" alt="Fondo" />
+        <img className="mt-5" src="/images/sis.jpeg" alt="Fondo" />
       </section>
     </DefaultLayout>
   );

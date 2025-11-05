@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 export default function LoginPage() {
   const router = useRouter();
   const [password, setPassword] = React.useState("");
-  const [submitted, setSubmitted] = React.useState(null);
+  const [submitted, setSubmitted] = React.useState<{ [k: string]: FormDataEntryValue } | null>(null);
   const [errors, setErrors] = React.useState({});
 
   useEffect(() => {
